@@ -1,18 +1,16 @@
 {
-  "name": "trendblogs",
-  "version": "1.0.0",
-  "description": "Dynamic application that modifies blog contents automatically",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "blog"
-  ],
-  "author": "senthur athiban",
-  "license": "ISC",
+  "name": "news",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "node-google-search-trends": "^1.1.0" 
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
