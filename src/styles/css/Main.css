@@ -1,0 +1,14 @@
+.page_background{
+    background-color:#f1f2f6;
+}
+.body{
+    padding:30px 10px;
+}
+.contentImage{
+    width:320px;
+    height:270px;
+    padding:20px;
+    position: relative;
+    background-color: #70a1ff;
+    float: right;
+}
