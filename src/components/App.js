@@ -10,8 +10,8 @@ class App extends Component {
   render() {
     return (
       <div className="page_background">
-        <Header logo_url={"./logo.png"} />
-        <Ad position={"TOP"} content={""}/>
+        <Header logo_url={"./assets/images/logo.png"} />
+        {/* <Ad position={"TOP"} content={""}/> */}
         <div className="container-fluid">
           <div className='row'>
             <div className="col-sm-3 col-xs-3 col-md-3 col-lg-3 hidden-xs body" >
