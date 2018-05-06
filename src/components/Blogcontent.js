@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-var trends=require('node-google-search-trends');
+var trends=require('./../imports/trends');
 export default class Blogcontent extends Component {
     componentWillMount(){
         trends('India', 10, function(err, data) {
