@@ -1,10 +1,11 @@
 body{
-    /* background: url("/assets/images/background.jpg") no-repeat 100vh center; */
     background-image: url("/assets/images/background.jpg");
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
-    background-position:cover;
     background-attachment: fixed;
+}
+p{
+    margin-bottom:0.5rem;
 }
 .body{
     padding:100px 10px;
@@ -35,4 +36,38 @@ body{
 }
 .header,.footer{
     z-index:9999;
+}
+
+
+
+@media (min-width: 320px) and (max-width:500px){
+.contentroot{
+    padding-top:75px;
+  }
+  #root > div > div.container-fluid > div:nth-child(2) > div.col-sm-3.col-xs-3.col-md-3.col-lg-3.hidden-xs.body.searchoptions > div , #root > div > div.container-fluid > div.row.contentroot > div:nth-child(3) > div{
+    position: relative;
+  }
+  .body{
+    padding:10px;
+  }
+}
+
+
+
+.social_media_f,.social_media_t,.social_media_i,.social_media_w{
+    background:url('/assets/images/socialmedia/allinone.png') center no-repeat;
+    width: 50px;
+    height: 50px;
+} 
+.social_media_f{
+    background-position: 34% 40%;
+}
+.social_media_t{
+    background-position: 66% 61%;
+}
+.social_media_i{
+    background-position: 97% 39%;
+}
+.social_media_w{
+    background-position: 34% 17%;
 }

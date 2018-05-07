@@ -18,12 +18,12 @@ class App extends Component {
               <Header logo_url={"./assets/images/logo.png"} />
             </div>
           </div>
-          <div className='row'>
-            <div className="col-sm-3 col-xs-3 col-md-3 col-lg-3 hidden-xs body" >
+          <div className='row contentroot'>
+            <div className="col-sm-3 col-xs-3 col-md-3 col-lg-3 hidden-xs body searchoptions" >
             <div className="sticky col-sm-3 col-xs-3 col-md-3 col-lg-3">
               <Search option={{}}/>
               <div>
-                <Ad position={"LEFT"} content={"sdfjslfjal sldjf"}/>
+                <Ad position={"LEFT"} content={""}/>
               </div>
             </div>
             </div>
@@ -33,7 +33,7 @@ class App extends Component {
             <div className="col-sm-3 col-xs-3 col-md-3 col-lg-3 hidden-xs body" >
               <div className="sticky col-sm-3 col-xs-3 col-md-3 col-lg-3">
                 <div>
-                  <Ad position={"RIGHT"} content={"sdfdsafsf"}/>
+                  <Ad position={"RIGHT"} content={""}/>
                 </div>
               </div>
             </div>

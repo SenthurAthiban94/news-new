@@ -43,34 +43,38 @@ export default class Blogcontent extends Component {
                         var current_imageURL={background: 'url("'+e.contentImageUrl+'") center no-repeat',backgroundSize: '100% 100%'};
                         return (                
                                 <div className={current_classname} key={v}>
-                                    <div className="photo" style={current_imageURL}></div>
+                                    <div className="blog-picture">
+                                        <div className="photo" style={current_imageURL}></div>
+                                        <div className="views">
+                                            <span className="glyphycon-icon view-icon"></span>
+                                            <span className="search_traffic">{e.traffic}+ <i>Views</i></span>
+                                        </div>
+                                    </div>
                                     <ul className="details">
-                                        <li className="author"><a rel="nofollow, noindex" href="">John Doe</a></li>
-                                        <li className="date">Aug. 24, 2015</li>
-                                        <li className="tags">
+                                        <li className="author">Share</li>
+                                        {/* <li className="date">Aug. 24, 2015</li>
+                                        <li className="tags"> */}
                                             {/* SHARE options  */}
-                                            <ul>
-                                                <li><a href="">Learn</a></li>
-                                                <li><a href="">Code</a></li>
-                                                <li><a href="">HTML</a></li>
-                                                <li><a href="">CSS</a></li>
-                                            </ul>
-                                        </li>
+                                            {/* <ul> */}
+                                                <li><a href=""><div className="social_media_f"></div></a></li>
+                                                <li><a href=""><div className="social_media_t"></div></a></li>
+                                                <li><a href=""><div className="social_media_i"></div></a></li>
+                                                <li><a href=""><div className="social_media_w"></div></a></li>
+                                            {/* </ul> */}
+                                        {/* </li> */}
                                     </ul>
                                     <div className="description">
-                                        <h1>{e.title}<span style={{float:'right',fontSize:'12px'}}><span className="glyphicon glyphicon-eye-open"></span>{e.traffic}</span></h1>
+                                        <h1>{e.title}</h1>
                                         <h2>{e.description}</h2>
-                                        <p className="summary">
-                                            <div>
+                                        <div className="summary">
+                                            <p>
                                                 {this.parseHTML(e.summary.title)}
-                                            </div>
-                                            <div>
+                                            </p>
+                                            <p>
                                                 {this.parseHTML(e.summary.content)}
-                                            </div>
-                                            <div>
-                                                <b>Source : </b>{this.parseHTML(e.summary.source)}
-                                            </div>
-                                        </p>
+                                            </p>
+                                                <b>Source : </b><i>{this.parseHTML(e.summary.source)}</i>
+                                        </div>
                                         <a rel="nofollow, noindex" href={e.contentLink} target="_blank">Read More</a>
                                     </div>
                                 </div>

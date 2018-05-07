@@ -1,13 +1,18 @@
 /*PEN STYLES*/
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:400,700);
 
+.blog-picture{
+    display:  inline;
+    overflow:  hidden;
+    width: 30%;
+}
 .blog-card {
   transition: height 0.3s ease;
   -webkit-transition: height 0.3s ease;
   background: #fff;
   border-radius: 3px;
   box-shadow: 0 3px 7px -3px rgba(0, 0, 0, 0.3);
-  margin: 0 auto 1.6%;
+  margin: 0 auto 2.6%;
   overflow: hidden;
   position: relative;
   font-size: 14px;
@@ -25,8 +30,8 @@
   right: -100%;
   left: inherit;
 }
-.blog-card .photo {
-  min-height: 150px;
+.blog-card .blog-picture,.blog-card .blog-picture .photo {
+  min-height: 240px;
   position: relative;
 }
 .blog-card .details {
@@ -38,8 +43,8 @@
   font-family: "Open Sans";
   list-style: none;
   margin: 0;
-  padding: 10px 15px;
-  height: 200px;
+  padding: 10px 20px;
+  height: 240px;
   /*POSITION*/
   position: absolute;
   top: 0;
@@ -47,17 +52,24 @@
 }
 .blog-card .details > li {
   padding: 3px 0;
+  display:inline-table;
+  margin:5% 5%;
 }
 .blog-card .details li:before, .blog-card .details .tags ul:before {
   font-family: FontAwesome;
   margin-right: 10px;
   vertical-align: middle;
 }
+.blog-card .details .author{
+  display:block;
+  margin:0;
+  text-align: center;
+}
 .blog-card .details .author:before {
-  content: "\f007";
+  /* content: "\f007"; */
 }
 .blog-card .details .date:before {
-  content: "\f133";
+  /* content: "\f133"; */
 }
 .blog-card .details .tags ul {
   list-style: none;
@@ -80,6 +92,7 @@
 }
 .blog-card .description {
   padding: 10px;
+  padding-bottom:55px;
   box-sizing: border-box;
   position: relative;
 }
@@ -98,12 +111,12 @@
   font-weight: 400;
   margin: 1.2% 0;
 }
-.blog-card .description p {
+.blog-card .description .summary {
   position: relative;
   margin: 0;
   padding-top: 20px;
 }
-.blog-card .description p:after {
+.blog-card .description div.summary:after {
   content: "";
   background: #75D13B;
   height: 6px;
@@ -115,8 +128,11 @@
 }
 .blog-card .description a {
   color: #75D13B;
-  margin-bottom: 10px;
-  float: right;
+  /* margin-bottom: 10px; */
+  /* float: right; */
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
 }
 .blog-card .description a:after {
   transition: all 0.3s ease;
@@ -132,16 +148,28 @@
   opacity: 1;
 }
 
-@media screen and (min-width: 600px) {
+@media (min-width: 320px) and (max-width:769px){
+  .blog-card .details {
+    width: 100%;
+  } 
+  .blog-card .views{
+      position: relative;
+      margin-bottom:20px;
+      background-color: #00000026;
+  }
+}
+
+
+@media screen and (min-width: 769px) {
   .blog-card {
     min-height: 150px;
     width: 100%;
   }
-  .blog-card:hover .photo {
+  .blog-card:hover .blog-picture .photo {
     -webkit-transform: rotate(5deg) scale(1.3);
             transform: rotate(5deg) scale(1.3);
   }
-  .blog-card:hover.alt .photo {
+  .blog-card:hover.alt .blog-picture .photo {
     -webkit-transform: rotate(-5deg) scale(1.3);
             transform: rotate(-5deg) scale(1.3);
   }
@@ -150,6 +178,8 @@
   }
   .blog-card.alt .description {
     float: right;
+    min-height: 240px;
+    padding-bottom:55px;
   }
   .blog-card.alt .description:before {
     -webkit-transform: skewX(5deg);
@@ -157,23 +187,27 @@
     right: -15px;
     left: inherit;
   }
-  .blog-card.alt .photo {
+  .blog-card .blog-picture{
+    float: left;
+  }
+  .blog-card.alt .blog-picture , .blog-card.alt .blog-picture .photo {
     float: right;
   }
-  .blog-card .photo {
+  .blog-card .blog-picture .photo {
     transition: all 0.5s ease;
     -webkit-transition: all 0.5s ease;
     float: left;
     height: 100%;
-    width: 30%;
+    width: 100%;
   }
   .blog-card .details {
-    width: 40%;
+    width: 30%;
   }
   .blog-card .description {
     float: left;
     width: 70%;
     z-index: 0;
+    min-height: 240px;
   }
   .blog-card .description:before {
     -webkit-transform: skewX(-5deg);
@@ -188,4 +222,29 @@
     top: 0;
     bottom: 0;
   }
+}
+
+.search_traffic{
+  padding:10px;
+  font-weight: bolder;
+}
+.glyphycon-icon{
+  background:url('/assets/images/glyphicons/icons.png') center no-repeat;
+}
+.views{
+  background-color: white;
+  color:black;
+  position: absolute;
+  bottom:0;
+  width:100%;
+  text-align: center;
+  padding:10px 0;
+  z-index: 2;
+  min-height: 10px;
+}
+.views .view-icon{
+  width: 20px;
+  height: 15px;
+  display: inline-block;
+  background-position: 21% 82%;
 }
