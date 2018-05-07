@@ -1,6 +1,12 @@
 import React,{Component} from 'react';
 import './../styles/css/blog-contents.css';
-// var request = require("request");
+// HTML Parser modules
+import Parser from 'html-react-parser';
+// import { render } from 'react-dom';
+////////////////////////////////////
+
+
+
 
 export default class Blogcontent extends Component {
     constructor(){
@@ -24,11 +30,13 @@ export default class Blogcontent extends Component {
     componentWillMount(){
         this.sortByCity('India');
     }
+    parseHTML(value){
+        return Parser(value);
+    }
     render() {
         return (
             <div className="content-wrapper">
                 <h3 className="Heading">Top Searches</h3>
-                
                 {    
                     this.state.contents_in_view.map((e,v)=>{
                         var current_classname="blog-card "+((v % 2!==0) ? "alt" : "");
@@ -37,9 +45,10 @@ export default class Blogcontent extends Component {
                                 <div className={current_classname} key={v}>
                                     <div className="photo" style={current_imageURL}></div>
                                     <ul className="details">
-                                        <li className="author"><a href="">John Doe</a></li>
+                                        <li className="author"><a rel="nofollow, noindex" href="">John Doe</a></li>
                                         <li className="date">Aug. 24, 2015</li>
                                         <li className="tags">
+                                            {/* SHARE options  */}
                                             <ul>
                                                 <li><a href="">Learn</a></li>
                                                 <li><a href="">Code</a></li>
@@ -51,53 +60,23 @@ export default class Blogcontent extends Component {
                                     <div className="description">
                                         <h1>{e.title}<span style={{float:'right',fontSize:'12px'}}><span className="glyphicon glyphicon-eye-open"></span>{e.traffic}</span></h1>
                                         <h2>{e.description}</h2>
-                                        <p className="summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.
-                                        {/* {e.contentLink} */}
+                                        <p className="summary">
+                                            <div>
+                                                {this.parseHTML(e.summary.title)}
+                                            </div>
+                                            <div>
+                                                {this.parseHTML(e.summary.content)}
+                                            </div>
+                                            <div>
+                                                <b>Source : </b>{this.parseHTML(e.summary.source)}
+                                            </div>
                                         </p>
-                                        <a href={e.contentLink}>Read More</a>
+                                        <a rel="nofollow, noindex" href={e.contentLink} target="_blank">Read More</a>
                                     </div>
                                 </div>
                             )
                     })
-                }
-                {/* <div class="blog-card alt">
-                    <div class="photo" style={{background: 'url("http://i62.tinypic.com/34oq4o0.jpg") center no-repeat',backgroundSize: 'cover'}}></div>
-                    <ul class="details">
-                        <li class="author"><a href="#">Jane Doe</a></li>
-                        <li class="date">July. 15, 2015</li>
-                        <li class="tags">
-                            <ul>
-                                <li><a href="#">Learn</a></li>
-                                <li><a href="#">Code</a></li>
-                                <li><a href="#">JavaScript</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <div class="description">
-                        <h1>Mastering the Language</h1>
-                        <h2>Java is not the same as JavaScript</h2>
-                        <p class="summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div> */}
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                                {/* {e.title}
-                                {e.description}
-                                {e.traffic}
-                                {e.contentLink}
-                                {e.contentImageUrl}
-                                {e.dateTracked} */}
-                  
+                }               
         </div>
         )
     }
