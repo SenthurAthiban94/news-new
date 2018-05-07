@@ -10,7 +10,7 @@ export default class Blogcontent extends Component {
         }
     }
     sortByCity(cityname){
-        fetch('http://localhost:3001/sitesbycities/'+cityname,{headers: {
+        fetch('https://adminsa.herokuapp.com/sitesbycities/'+cityname,{headers: {               //http://localhost:3001/
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           }})
