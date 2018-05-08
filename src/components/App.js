@@ -39,7 +39,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <Ad position={"BOTTOM"} content={""}/>        
+        {/* <Ad position={"BOTTOM"} content={""}/>         */}
       </div>
     );
   }

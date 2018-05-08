@@ -96,10 +96,10 @@
   box-sizing: border-box;
   position: relative;
 }
-.blog-card .description h1 {
+.blog-card .description h3 {
   font-family: "Roboto";
   line-height: 1em;
-  font-size:22px;
+  font-size:25px;
   margin: 0 0 10px 0;
 }
 .blog-card .description h2 {

@@ -12,6 +12,7 @@ export default class Blogcontent extends Component {
     constructor(){
         super();
         this.state={
+            loader:true,
             contents_in_view:[]
         }
     }
@@ -22,7 +23,7 @@ export default class Blogcontent extends Component {
           }})
         .then(response=> {return response.json()})
         .then(data=>{
-            this.setState({contents_in_view : data});
+            this.setState({loader:false,contents_in_view : data});
         }).catch(err=>{
             console.log(err);
         });
@@ -34,10 +35,11 @@ export default class Blogcontent extends Component {
         return Parser(value);
     }
     render() {
-        return (
+        var renderelement= (
             <div className="content-wrapper">
-                <h3 className="Heading">Top Searches</h3>
+                <h1 className="Heading">India's Top Searches</h1>
                 {    
+                    (this.state.loader) ? <div className="loader-wrapper"><label className="loader"></label></div> : 
                     this.state.contents_in_view.map((e,v)=>{
                         var current_classname="blog-card "+((v % 2!==0) ? "alt" : "");
                         var current_imageURL={background: 'url("'+e.contentImageUrl+'") center no-repeat',backgroundSize: '100% 100%'};
@@ -64,7 +66,7 @@ export default class Blogcontent extends Component {
                                         {/* </li> */}
                                     </ul>
                                     <div className="description">
-                                        <h1>{e.title}</h1>
+                                        <h3>{e.title}</h3>
                                         <h2>{e.description}</h2>
                                         <div className="summary">
                                             <p>
@@ -73,7 +75,7 @@ export default class Blogcontent extends Component {
                                             <p>
                                                 {this.parseHTML(e.summary.content)}
                                             </p>
-                                                <b>Source : </b><i>{this.parseHTML(e.summary.source)}</i>
+                                            <b>Source : </b><i>{this.parseHTML(e.summary.source)}</i>
                                         </div>
                                         <a rel="nofollow, noindex" href={e.contentLink} target="_blank">Read More</a>
                                     </div>
@@ -83,5 +85,7 @@ export default class Blogcontent extends Component {
                 }               
         </div>
         )
+
+        return renderelement;
     }
 }
