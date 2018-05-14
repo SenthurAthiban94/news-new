@@ -23,9 +23,14 @@ p{
 }
 .Heading{
     padding:20px 0;
+    text-align: center;
+}
+.heading-filter{
+    padding-top:20px;
+    text-align: center;
 }
 .searchContainer{
-    min-height: 200px;
+    min-height: 150px;
     background-color:#00000085;
     color:white;
 }
@@ -33,6 +38,7 @@ p{
     background-color:#fffcffd1;
     padding:20px;
     border-radius: 20px;
+    min-height: 70vh;
 }
 .header,.footer{
     z-index:9999;
@@ -74,8 +80,34 @@ p{
 
 
 /* PAGE LOADER */
+.error_info{
+    text-align: center;
+    position:absolute;
+    top: 50%;
+    width:96%;
+    color:red;
+}
 .loader-wrapper{
     text-align: center;
+    position:absolute;
+    left:48%;
+    top: 50%;
+}
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 1024px) {
+    .error_info{
+        padding:0px 10px;
+        width:80%;
+    }
+}
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 768px) {
+  /* STYLES GO HERE */
+    .loader-wrapper{
+        left:45%;
+    }
 }
 .loader {
     border: 7px solid black;
