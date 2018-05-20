@@ -28,11 +28,29 @@ export default class IndividualBlog extends Component {
         }})
         .then(response=> {return response.json()})
         .then(data=>{
-            this.setState({error:false,loader:false,content : data},()=>{});
+            this.setState({error:false,loader:false,content : data},()=>{
+                this.set_SEO_Headers(data);
+            });
         }).catch(err=>{
             this.setState({error:true,loader:false,content : err});
         });
     }
+
+    set_SEO_Headers(data){
+    var monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"],
+        transformdate=new Date(data.created_date),
+        searched_date = transformdate.getUTCDate()+"-"+monthNames[transformdate.getUTCMonth()]+"-"+transformdate.getUTCFullYear();
+        document.title="News New | "+data.title;
+        document.querySelector('meta[name="description"]').content=data.description && data.description.length ? data.description : data.title+" is one of the trending search in "+data.countryName+" on "+searched_date;
+        document.querySelector('meta[itemprop="name"]').content="News New Search - "+data.title;
+        document.querySelector('meta[itemprop="image"]').content=data.contentImageUrl && data.contentImageUrl.length ? data.contentImageUrl : "https://news-new.herokuapp.com/assets/images/logo.png";
+        document.querySelector('meta[itemprop="description"]').content=data.description && data.description.length ? data.description : data.title+" is one of the trending search in "+data.countryName+" on "+searched_date;
+        document.querySelector('meta[property="og:title"]').content="News New Search - "+data.title;
+        document.querySelector('meta[property="og:image"]').content=data.contentImageUrl && data.contentImageUrl.length ? data.contentImageUrl : "https://news-new.herokuapp.com/assets/images/logo.png";
+        document.querySelector('meta[property="og:description"]').content=data.description && data.description.length ? data.description : data.title+" is one of the trending search in "+data.countryName+" on "+searched_date;
+    }
+
+
   render() {
     const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
     var contents=this.state.content,

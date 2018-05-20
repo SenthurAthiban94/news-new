@@ -91,7 +91,6 @@ export default class Blogcontent extends Component {
         switch(media){
             case "social_media_f":
                 console.log("facebook",url);
-                window.location.href=url;
                 break;
             case "social_media_t":
                 console.log("twitter",url);
@@ -117,7 +116,7 @@ export default class Blogcontent extends Component {
                         var current_classname="blog-card "+((v % 2!==0) ? "alt" : ""),
                             image_url=e.contentImageUrl ? e.contentImageUrl : "./assets/images/contentImage.jpg",
                             current_imageURL={background: 'url("'+image_url+'") center no-repeat',backgroundSize: '150px 150px'},
-                            contentlink=e.contentLink ? (<a rel="nofollow, noindex" href={e.contentLink} target="_blank">Read More</a>) : "",
+                            contentlink=e.contentLink ? (<a rel="nofollow, noindex" className="read_more" href={e.contentLink} target="_blank">Read More</a>) : "",
                             summary=e.summary ? (
                                                     <div className="summary">
                                                         <p>
@@ -155,9 +154,11 @@ export default class Blogcontent extends Component {
                                         {/* </li> */}
                                     </ul>
                                     <div className="description">
-                                        <h3>{e.title}</h3>
-                                        <h2>{e.description}</h2>
-                                        {summary}     
+                                        <a className="description_link" target="_blank" href={"./?id="+e._id}>
+                                            <h3>{e.title}</h3>
+                                            <h2>{e.description}</h2>
+                                            {summary}     
+                                        </a>
                                         {contentlink}
                                     </div>
                                 </div>
