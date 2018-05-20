@@ -31,7 +31,7 @@ export default class Blogcontent extends Component {
         });
     }
     checknextsets(cityname){
-        fetch('https://adminsa.herokuapp.com/sitesbycities/'+cityname+'/'+this.state.resultcount+10,{headers: {
+        fetch('https://adminsa.herokuapp.com/sitesbycities/'+cityname+'/'+(parseInt(this.state.resultcount,10) + 10),{headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           }})
@@ -83,19 +83,24 @@ export default class Blogcontent extends Component {
 
     createContentUrl(event,i){
         event.preventDefault();
-        console.log(this.state.contents_in_view[i]);
-        // var media=event.target.parentElement.className;
-        // this.socialshare(media);    
+        var pagetoshare="./?id="+this.state.contents_in_view[i]["_id"];
+        var media=event.target.parentElement.className;
+        this.socialshare(pagetoshare,media);    
     }
     socialshare(url,media){
         switch(media){
             case "social_media_f":
+                console.log("facebook",url);
+                window.location.href=url;
                 break;
             case "social_media_t":
+                console.log("twitter",url);
                 break;
             case "social_media_i":
+                console.log("instagram",url);
                 break;
             case "social_media_w":
+                console.log("whatsapp",url);
                 break;
             default:
                 break;
@@ -109,8 +114,24 @@ export default class Blogcontent extends Component {
                     (this.state.loader) ? <div className="loader-wrapper"><label className="loader"></label></div> : 
                     (this.state.error) ? <div className="text-center error_info">Something Went Wrong. Please try again Later!!</div> :
                     this.state.contents_in_view.map((e,v)=>{
-                        var current_classname="blog-card "+((v % 2!==0) ? "alt" : "");
-                        var current_imageURL={background: 'url("'+e.contentImageUrl+'") center no-repeat',backgroundSize: '150px 150px'};
+                        var current_classname="blog-card "+((v % 2!==0) ? "alt" : ""),
+                            image_url=e.contentImageUrl ? e.contentImageUrl : "./assets/images/contentImage.jpg",
+                            current_imageURL={background: 'url("'+image_url+'") center no-repeat',backgroundSize: '150px 150px'},
+                            contentlink=e.contentLink ? (<a rel="nofollow, noindex" href={e.contentLink} target="_blank">Read More</a>) : "",
+                            summary=e.summary ? (
+                                                    <div className="summary">
+                                                        <p>
+                                                            {this.parseHTML(e.summary.title)}
+                                                        </p>
+                                                        <p>
+                                                            {this.parseHTML(e.summary.content)}
+                                                        </p>
+                                                        <b>Source : </b><i>{this.parseHTML(e.summary.source)}</i>
+                                                    </div>) : ( <div className="summary">
+                                                                    <p>
+                                                                        People in {e.countryName} have not searched this keyword "<b>{e.title}</b>" into any specific website, but still it is one of the most searched content over the web in {e.countryName}. 
+                                                                    </p>
+                                                                </div>);
                         return (                
                                 <div className={current_classname} key={v}>
                                     <div className="blog-picture">
@@ -136,16 +157,8 @@ export default class Blogcontent extends Component {
                                     <div className="description">
                                         <h3>{e.title}</h3>
                                         <h2>{e.description}</h2>
-                                        <div className="summary">
-                                            <p>
-                                                {this.parseHTML(e.summary.title)}
-                                            </p>
-                                            <p>
-                                                {this.parseHTML(e.summary.content)}
-                                            </p>
-                                            <b>Source : </b><i>{this.parseHTML(e.summary.source)}</i>
-                                        </div>
-                                        <a rel="nofollow, noindex" href={e.contentLink} target="_blank">Read More</a>
+                                        {summary}     
+                                        {contentlink}
                                     </div>
                                 </div>
                             )

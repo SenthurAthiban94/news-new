@@ -8,6 +8,9 @@ export default class Search extends Component {
     }
     this.changevalue=this.changevalue.bind(this);
   }
+  componentWillMount(){
+    console.log(this.props.individual_site);
+  }
   changevalue(event){
     this.setState({country_name:event.target.value},()=>{
       this.props.filter({
