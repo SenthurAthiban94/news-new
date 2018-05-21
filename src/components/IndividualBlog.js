@@ -60,7 +60,7 @@ export default class IndividualBlog extends Component {
     var contents=this.state.content,
         transformdate=new Date(this.state.content.created_date),
         searched_date = transformdate.getUTCDate()+"-"+monthNames[transformdate.getUTCMonth()]+"-"+transformdate.getUTCFullYear(),
-        contentlink=(contents.contentLink && (contents.contentLink.length>0)) ? <a href={contents.contentLink} rel="nofollow, noindex" target="_blank" className="post-link">Read More...</a> : "",
+        contentlink=(contents.contentLink && (contents.contentLink.length>0)) ? <a href={contents.contentLink} rel="nofollow, noindex, noopener" target="_blank" className="post-link">Read More...</a> : "",
         contentImage=(contents.contentImageUrl && contents.contentImageUrl.length>0) ? contents.contentImageUrl : "./assets/images/contentImage.jpg",
         summary=contents.summary && Object.keys(contents.summary).length ? (<div className="blog-content">
                                                                             <p>

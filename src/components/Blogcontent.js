@@ -116,7 +116,7 @@ export default class Blogcontent extends Component {
                         var current_classname="blog-card "+((v % 2!==0) ? "alt" : ""),
                             image_url=e.contentImageUrl ? e.contentImageUrl : "./assets/images/contentImage.jpg",
                             current_imageURL={background: 'url("'+image_url+'") center no-repeat',backgroundSize: '150px 150px'},
-                            contentlink=e.contentLink ? (<a rel="nofollow, noindex" className="read_more" href={e.contentLink} target="_blank">Read More</a>) : "",
+                            contentlink=e.contentLink ? (<a rel="nofollow, noindex, noopener" className="read_more" href={e.contentLink} target="_blank">Read More</a>) : "",
                             summary=e.summary ? (
                                                     <div className="summary">
                                                         <p>
