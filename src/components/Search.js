@@ -78,6 +78,7 @@ export default class Search extends Component {
               <div className="fb-like"
                 data-share="true"
                 data-size="large"
+                data-width="300"
                 data-show-faces="true">
               </div>
             </div>

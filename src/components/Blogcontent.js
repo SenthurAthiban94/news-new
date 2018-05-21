@@ -94,6 +94,7 @@ export default class Blogcontent extends Component {
                 break;
             case "social_media_t":
                 console.log("twitter",url);
+                window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'facebook-share-dialog','width=626,height=436'); 
                 break;
             case "social_media_i":
                 console.log("instagram",url);
