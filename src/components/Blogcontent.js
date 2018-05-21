@@ -83,9 +83,8 @@ export default class Blogcontent extends Component {
 
     createContentUrl(event,i){
         event.preventDefault();
-        var pagetoshare="./?id="+this.state.contents_in_view[i]["_id"];
-        var media=event.target.parentElement.className;
-        this.socialshare(pagetoshare,media);    
+        var pagetoshare="https://news-new.herokuapp.com/?id="+this.state.contents_in_view[i]["_id"];
+        this.socialshare(pagetoshare,event.target.parentElement.className);    
     }
     socialshare(url,media){
         switch(media){
