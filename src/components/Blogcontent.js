@@ -146,7 +146,7 @@ export default class Blogcontent extends Component {
                                         <li className="tags"> */}
                                             {/* SHARE options  */}
                                             {/* <ul> */}
-                                                <li><div className="fb-share-button social_media_f" data-href={"https://news-new.herokuapp.com/?id="+e["_id"]} data-layout="button" data-size="small" data-mobile-iframe="true"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnews-new.herokuapp.com%2F%3Fid%3D5b02ddadcb7fef002022da84&amp;src=sdkpreparse" target="_blank" className="fb-xfbml-parse-ignore social-links"> </a></div></li>
+                                                <li><div className="fb-share-button social_media_f" data-share="true" data-href={"https://news-new.herokuapp.com/?id="+e["_id"]} data-layout="button" data-size="small" data-mobile-iframe="true"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnews-new.herokuapp.com%2F%3Fid%3D5b02ddadcb7fef002022da84&amp;src=sdkpreparse" target="_blank" className="fb-xfbml-parse-ignore social-links"> </a></div></li>
                                                 <li><div className="social_media_t"><a href="" onClick={(event)=>this.createContentUrl(event,v)} className="social-links"> </a></div></li>
                                                 <li><div className="social_media_i"><a href="" onClick={(event)=>this.createContentUrl(event,v)} className="social-links"> </a></div></li>
                                                 <li><div className="social_media_w"><a href="" onClick={(event)=>this.createContentUrl(event,v)} className="social-links"> </a></div></li>

@@ -75,6 +75,10 @@
     width: 100%;
     display: inherit;
   }
+  .social-like,.social-like > div{
+    width:100%;
+    text-align:center;
+  }
   .blog-card .details .tags ul:before {
     content: "\f02b";
   }
