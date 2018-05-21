@@ -75,6 +75,11 @@ export default class Search extends Component {
               </select>
             </div>
             <div className="search-form-input">
+              <div className="fb-like"
+                data-share="true"
+                data-width="500"
+                data-show-faces="true">
+              </div>
             </div>
         </div>
     )

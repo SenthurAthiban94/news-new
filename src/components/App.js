@@ -158,11 +158,6 @@ class App extends Component {
                                                   </div>
                                                 </div>
                                                 {/* <Ad position={"BOTTOM"} content={""}/>         */}
-                                                <div className="fb-like"
-                                                  data-share="true"
-                                                  data-width="450"
-                                                  data-show-faces="true">
-                                                </div>
                                               </div>
                                             );
       
