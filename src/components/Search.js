@@ -74,7 +74,7 @@ export default class Search extends Component {
                 <option value="Vietnam">Vietnam</option>
               </select>
             </div>
-            <div className="search-form-input social-like">
+            <div className="social-like">
               <div className="fb-like"
                 data-share="true"
                 data-size="large"
