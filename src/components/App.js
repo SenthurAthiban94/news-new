@@ -4,6 +4,7 @@ import Ad from './Ad';
 import Search from './Search';
 import Blogcontent from './Blogcontent';
 import IndividualBlog from './IndividualBlog';
+import PrivacyPolicy from './PrivacyPolicy';
 import './../styles/css/Main.css';
 
 class App extends Component {
@@ -24,7 +25,6 @@ class App extends Component {
       var items = window.location.search.substr(1).split("&");
       for (var index = 0; index < items.length; index++) {
           tmp = items[index].split("=");
-
           if (tmp[0] === identifier){
               result = decodeURIComponent(tmp[1]);
           }
@@ -60,7 +60,18 @@ class App extends Component {
   componentWillMount(){
     // this.getmylocation();
     // this.ipLookUp();
-    document.title = "News New | "+this.state.filter.value;
+    this.checkprivacypage() ? document.title = "News New | Privacy Policy" : document.title = "News New | "+this.state.filter.value;
+  }
+
+  checkprivacypage(){
+    var currentpage=window.location.href;
+    if(currentpage==="https://news-new.herokuapp.com/privacy-policy/" || currentpage==="https://news-new.herokuapp.com/privacy-policy"){
+      return true;
+    }
+    if(!this._getParameter("id") && currentpage!=="https://news-new.herokuapp.com/"){
+      window.location.href="https://news-new.herokuapp.com/";
+    }
+    return false;
   }
 
   ipLookUp() {
@@ -100,43 +111,57 @@ class App extends Component {
   render() {
     var searchoption=this.state.blogdetails ? "" : (<Search filter={this.changefilter}/>);
     var contents_container=this.state.blogdetails ? (
-      <IndividualBlog id={this.state.blogdetails}/>
-    ) : (
-      <Blogcontent filter={this.state.filter} />
-    )
-    return (
-      <div>
-        <div className="container-fluid">
-          <div className='row'>
-            <div className="sticky header">
-              <Header logo_url={"./assets/images/logo.png"} />
-            </div>
-          </div>
+                            <IndividualBlog id={this.state.blogdetails}/>
+                          ) : (
+                            <Blogcontent filter={this.state.filter} />
+                          )
 
-          <div className='row contentroot'>
-            <div className="col-sm-3 col-xs-3 col-md-3 col-lg-3 hidden-xs body searchoptions" >
-            <div className="sticky col-sm-3 col-xs-3 col-md-3 col-lg-3">
-              {searchoption}
-              <div>
-                <Ad position={"LEFT"} content={""}/>
-              </div>
-            </div>
-            </div>
-            <div className="col-sm-6 col-xs-6 col-md-6 col-lg-6 body">
-                {contents_container}
-            </div>
-            <div className="col-sm-3 col-xs-3 col-md-3 col-lg-3 hidden-xs body" >
-              <div className="sticky col-sm-3 col-xs-3 col-md-3 col-lg-3">
-                <div>
-                  <Ad position={"RIGHT"} content={""}/>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* <Ad position={"BOTTOM"} content={""}/>         */}
-      </div>
-    );
+    var page_content= this.checkprivacypage() ? ( <div>
+                                                    <div className="container-fluid">
+                                                      <div className='row'>
+                                                        <div className="sticky header">
+                                                          <Header logo_url={"https://news-new.herokuapp.com/assets/images/logo.png"} />
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div className="privacy">
+                                                      <PrivacyPolicy />
+                                                    </div>
+                                                  </div>
+                                          ) : (
+                                              <div>
+                                                <div className="container-fluid">
+                                                  <div className='row'>
+                                                    <div className="sticky header">
+                                                      <Header logo_url={"./assets/images/logo.png"} />
+                                                    </div>
+                                                  </div>
+                                                  <div className='row contentroot'>
+                                                    <div className="col-sm-3 col-xs-3 col-md-3 col-lg-3 hidden-xs body searchoptions" >
+                                                      <div className="sticky col-sm-3 col-xs-3 col-md-3 col-lg-3">
+                                                        {searchoption}
+                                                        <div>
+                                                          <Ad position={"LEFT"} content={""}/>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div className="col-sm-6 col-xs-6 col-md-6 col-lg-6 body">
+                                                        {contents_container}
+                                                    </div>
+                                                    <div className="col-sm-3 col-xs-3 col-md-3 col-lg-3 hidden-xs body" >
+                                                      <div className="sticky col-sm-3 col-xs-3 col-md-3 col-lg-3">
+                                                        <div>
+                                                          <Ad position={"RIGHT"} content={""}/>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                {/* <Ad position={"BOTTOM"} content={""}/>         */}
+                                              </div>
+                                            );
+      
+      return(page_content);
   }
 }
 

@@ -19,7 +19,7 @@ export default class IndividualBlog extends Component {
     }
     movetohome(e){
         e.preventDefault();
-        window.location.href="./";
+        window.location.href="/";
     }
     componentWillMount(){
         fetch('https://adminsa.herokuapp.com/sites/'+this.props.id,{headers: {               //http://localhost:3001/
@@ -28,9 +28,13 @@ export default class IndividualBlog extends Component {
         }})
         .then(response=> {return response.json()})
         .then(data=>{
-            this.setState({error:false,loader:false,content : data},()=>{
-                this.set_SEO_Headers(data);
-            });
+            if(data.title){
+                this.setState({error:false,loader:false,content : data},()=>{
+                    this.set_SEO_Headers(data);
+                });
+            }else{
+                this.setState({error:true,loader:false,content : "Unable to get Page!!"});    
+            }
         }).catch(err=>{
             this.setState({error:true,loader:false,content : err});
         });
