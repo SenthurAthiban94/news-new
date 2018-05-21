@@ -68,7 +68,7 @@ class App extends Component {
     if(currentpage==="https://news-new.herokuapp.com/privacy-policy/" || currentpage==="https://news-new.herokuapp.com/privacy-policy"){
       return true;
     }
-    if(!this._getParameter("id") && currentpage!=="https://news-new.herokuapp.com/"){
+    if(!this._getParameter("id") && currentpage!=="https://news-new.herokuapp.com/" && currentpage!=="https://news-new.herokuapp.com"){
       window.location.href="https://news-new.herokuapp.com/";
     }
     return false;
