@@ -65,9 +65,11 @@ class App extends Component {
 
   checkprivacypage(){
     var currentpage=window.location.href;
+    // if(currentpage==="http://localhost:3000/privacy-policy/" || currentpage==="http://localhost:3000/privacy-policy"){    
     if(currentpage==="https://news-new.herokuapp.com/privacy-policy/" || currentpage==="https://news-new.herokuapp.com/privacy-policy"){
       return true;
     }
+    // if(!this._getParameter("id") && currentpage!=="http://localhost:3000/" && currentpage!=="http://localhost:3000"){    
     if(!this._getParameter("id") && currentpage!=="https://news-new.herokuapp.com/" && currentpage!=="https://news-new.herokuapp.com"){
       window.location.href="https://news-new.herokuapp.com/";
     }

@@ -18,7 +18,12 @@ a{
 	text-decoration: none;
 	color: inherit;
 }
-
+.view .view-icon{
+    width: 20px;
+    height: 16px;
+    display: inline-block;
+    background-position: 21% 81%;
+}
 .section {
 	clear: both;
 	padding: 0;
@@ -41,7 +46,7 @@ a{
     line-height: 1.8em;
 }
 .blog-content-description{
-    font-size: 2em;
+    font-size: 1.5em;
     line-height: 1.3em;
     border-left: 5px solid #75D13B;
     padding-left: 15px;

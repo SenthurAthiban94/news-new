@@ -156,9 +156,9 @@ export default class Blogcontent extends Component {
                                     <div className="description">
                                         <a className="description_link" target="_blank" href={"./?id="+e._id}>
                                             <h3>{e.title}</h3>
-                                            <h2>{e.description}</h2>
-                                            {summary}     
                                         </a>
+                                        <h2>{e.description}</h2>
+                                        {summary}     
                                         {contentlink}
                                     </div>
                                 </div>

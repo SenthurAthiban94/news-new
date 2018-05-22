@@ -50,7 +50,7 @@ export default class IndividualBlog extends Component {
         document.querySelector('meta[itemprop="name"]').content="News New Search - "+data.title;
         document.querySelector('meta[itemprop="image"]').content=data.contentImageUrl && data.contentImageUrl.length ? data.contentImageUrl : "https://news-new.herokuapp.com/assets/images/logo.png";
         document.querySelector('meta[itemprop="description"]').content=data.description && data.description.length ? data.description : data.title+" is one of the trending search in "+data.countryName+" on "+searched_date;
-        document.querySelector('meta[property="og:url"]').content=this.props.currenturl;
+        document.querySelector('meta[property="og:url"]').content="https://news-new.herokuapp.com/?id="+this.props.currenturl;
         document.querySelector('meta[property="og:title"]').content="News New Search - "+data.title;
         document.querySelector('meta[property="og:image"]').content=data.contentImageUrl && data.contentImageUrl.length ? data.contentImageUrl : "https://news-new.herokuapp.com/assets/images/logo.png";
         document.querySelector('meta[property="og:description"]').content=data.description && data.description.length ? data.description : data.title+" is one of the trending search in "+data.countryName+" on "+searched_date;
@@ -91,7 +91,13 @@ export default class IndividualBlog extends Component {
                         <img src={contentImage} className="content-photo" alt="Searched Thumbimage"/>
                     </div>
                     <h1 className="blog-title">{contents.title}</h1>
-                    <h2 className="date">Searched on {searched_date}</h2>
+                    <h2 className="date">
+                        Searched on {searched_date}
+                    </h2>
+                    <span className="view">
+                        <span className="glyphycon-icon view-icon"></span>
+                        <span className="search_traffic">{contents.traffic}+ <i>Views</i></span>
+                    </span>
                     <p className="blog-content-description">
                         {contents.description ? contents.description : ""}
                     </p>
