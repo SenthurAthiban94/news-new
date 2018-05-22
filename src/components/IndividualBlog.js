@@ -13,7 +13,6 @@ export default class IndividualBlog extends Component {
             error:false,
             content:[]
         };
-        this.set_share_Metaheader();
     }
     parseHTML(value){
         return Parser(value);
@@ -50,18 +49,6 @@ export default class IndividualBlog extends Component {
         }).catch(err=>{
             this.setState({error:true,loader:false,content : err});
         });
-    }
-
-    set_share_Metaheader(){
-        var sharedata={
-            title : this._getParameter('mettitle',true),
-            description : this._getParameter('metdesc',true),
-            url : this._getParameter('meturl',true)
-        }
-        document.querySelector('meta[property="og:url"]').content=sharedata.url;
-        document.querySelector('meta[property="og:title"]').content=sharedata.title;
-        // document.querySelector('meta[property="og:image"]').content="";
-        document.querySelector('meta[property="og:description"]').content=sharedata.description;
     }
 
     set_SEO_Headers(data){

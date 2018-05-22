@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,18 +10,18 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link rel="alternate" hreflang="x-default" href="https://news-new.herokuapp.com/" />
     <link rel="canonical" href="https://news-new.herokuapp.com/" /> 
-    <meta name="description" content="Explore trending search topics with News New Searches.">
+    <!-- <meta name="description" content="Explore trending search topics with News New Searches."> -->
     <meta name="fb:page_id" content="189414828370961" />
     <meta name="og:country-name" content="India"/>
-    <meta itemprop="name" content="News New Trending Searches">
-    <meta itemprop="image" content="https://news-new.herokuapp.com/assets/images/logo.png">
-    <meta itemprop="description" content="Explore trending search topics with News New Searches.">
+    <!-- <meta itemprop="name" content="News New Trending Searches">
+    <meta itemprop="image" content="https://news-new.herokuapp.com/assets/images/logo.png"> -->
+    <!-- <meta itemprop="description" content="Explore trending search topics with News New Searches."> -->
     <meta property="fb:app_id" content="462468354180027"/>
     <meta property="og:url" content="https://news-new.herokuapp.com/">
-    <meta property="og:title" content="News New Trending Searches">
+    <!-- <meta property="og:title" content="News New Trending Searches">
     <meta property="og:type" content="article">
+    <meta property="og:description" content="Explore trending search topics with News New Searches."> -->
     <meta property="og:image" content="https://news-new.herokuapp.com/assets/images/logo.png">
-    <meta property="og:description" content="Explore trending search topics with News New Searches.">
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
@@ -54,6 +55,47 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script>
+        var result =[], tmp = [],
+            headtag=document.getElementsByTagName('head')[0],
+            items = window.location.search.substr(1).split("&");
+            for (var index = 0; index < items.length; index++) {
+                tmp = items[index].split("=");
+                switch(tmp[0]){
+                  case "mettitle":
+                      result["og:title"]=decodeURIComponent(tmp[1]);
+                    break;
+                  case "metdesc":
+                      result["og:description"]=decodeURIComponent(tmp[1]);
+                    break;
+                  case "meturl":
+                      result["og:url"]=decodeURIComponent(tmp[1]);
+                    break;
+                }     
+            }
+            if(!Object.keys(result).length){
+              metatag=document.createElement('meta');
+              metatag.setAttribute("property","og:title");
+              metatag.setAttribute("content","News New Trending Searches");
+              headtag.appendChild(metatag);
+              metatag=document.createElement('meta');
+              metatag.setAttribute("property","og:description");
+              metatag.setAttribute("content","Explore trending search topics with News New Searches.");
+              headtag.appendChild(metatag);
+              metatag=document.createElement('meta');
+              metatag.setAttribute("property","og:url");
+              metatag.setAttribute("content","https://news-new.herokuapp.com/");
+              headtag.appendChild(metatag);
+            }else{
+              Object.keys(result).map(e=>{
+                metatag=document.createElement('meta');
+                metatag.setAttribute("property",e);
+                metatag.setAttribute("content",result[e]);
+                headtag.appendChild(metatag);
+                console.log(metatag);
+              });
+            }
+
+
       window.fbAsyncInit = function() {
         FB.init({
           appId      : '462468354180027',
