@@ -13,7 +13,7 @@ export default class IndividualBlog extends Component {
             error:false,
             content:[]
         };
-        this.set_share_Metaheader(this._getParameter('sharedata',true));
+        this.set_share_Metaheader();
     }
     parseHTML(value){
         return Parser(value);
@@ -28,7 +28,7 @@ export default class IndividualBlog extends Component {
         for (var index = 0; index < items.length; index++) {
             tmp = items[index].split("=");
             if (tmp[0] === identifier){
-                result = stringify ? decodeURIComponent(tmp[1]).replace(/@eq@/g,"=") : decodeURIComponent(tmp[1]);
+                result = decodeURIComponent(tmp[1]);
             }   
         }
         return result ? result : false;
@@ -52,8 +52,12 @@ export default class IndividualBlog extends Component {
         });
     }
 
-    set_share_Metaheader(sharedata){
-        sharedata=JSON.parse(sharedata);
+    set_share_Metaheader(){
+        var sharedata={
+            title : this._getParameter('mettitle',true),
+            description : this._getParameter('metdesc',true),
+            url : this._getParameter('meturl',true)
+        }
         document.querySelector('meta[property="og:url"]').content=sharedata.url;
         document.querySelector('meta[property="og:title"]').content=sharedata.title;
         // document.querySelector('meta[property="og:image"]').content="";
