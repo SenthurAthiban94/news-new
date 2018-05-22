@@ -81,16 +81,29 @@ export default class Blogcontent extends Component {
         return Parser(value);
     }
 
+    shorten_description(longstring){
+        longstring=longstring.substring(0,150);
+        return longstring.substr(0, Math.min(longstring.length, longstring.lastIndexOf(" ")))+"...";
+    }
+
     createContentUrl(event,i){
         event.preventDefault();
-        var pagetoshare="https://news-new.herokuapp.com/?id="+this.state.contents_in_view[i]["_id"];
-        this.socialshare(pagetoshare,event.target.parentElement.className);    
+        var pagetoshare="https://news-new.herokuapp.com/?id="+this.state.contents_in_view[i]["_id"],
+            metadescription=this.state.contents_in_view[i]["description"] && this.state.contents_in_view[i]["description"].length ? this.shorten_description(this.state.contents_in_view[i]["description"]) : "Most of people in "+this.state.contents_in_view[i]["countryName"]+" search for "+this.state.contents_in_view[i]["title"]+". Are you aware of it ?";            
+        var sharedata={
+                title: this.state.contents_in_view[i]["title"],
+                description: metadescription,
+                url:pagetoshare.replace(/=/g, '@eq@')
+            }
+        console.log(sharedata);
+        this.socialshare(sharedata,pagetoshare,event.target.parentElement.className);    
     }
-    socialshare(url,media){
+    socialshare(sharedata,url,media){
         switch(media){
             case "social_media_f":
                 console.log("facebook",url);
-                window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url)+'&amp;src=sdkpreparse','facebook-share-dialog','width=626,height=436');
+                window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url+"&sharedata="+JSON.stringify(sharedata))+'&amp;src=sdkpreparse','facebook-share-dialog','width=626,height=436');
+                // window.open(url+'&sharedata='+encodeURIComponent(JSON.stringify(sharedata)));
                 break;
             case "social_media_t":
                 console.log("twitter",url);

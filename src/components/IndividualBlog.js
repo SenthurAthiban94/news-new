@@ -13,6 +13,7 @@ export default class IndividualBlog extends Component {
             error:false,
             content:[]
         };
+        this.set_share_Metaheader(this._getParameter('sharedata',true));
     }
     parseHTML(value){
         return Parser(value);
@@ -20,6 +21,17 @@ export default class IndividualBlog extends Component {
     movetohome(e){
         e.preventDefault();
         window.location.href="/";
+    }
+    _getParameter(identifier,stringify=false) {
+        var result = undefined, tmp = [];
+        var items = window.location.search.substr(1).split("&");
+        for (var index = 0; index < items.length; index++) {
+            tmp = items[index].split("=");
+            if (tmp[0] === identifier){
+                result = stringify ? decodeURIComponent(tmp[1]).replace(/@eq@/g,"=") : decodeURIComponent(tmp[1]);
+            }   
+        }
+        return result ? result : false;
     }
     componentWillMount(){
         fetch('https://adminsa.herokuapp.com/sites/'+this.props.id,{headers: {               //http://localhost:3001/
@@ -30,7 +42,7 @@ export default class IndividualBlog extends Component {
         .then(data=>{
             if(data.title){
                 this.setState({error:false,loader:false,content : data},()=>{
-                    this.set_SEO_Headers(data);
+                    // this.set_SEO_Headers(data);
                 });
             }else{
                 this.setState({error:true,loader:false,content : "Unable to get Page!!"});    
@@ -38,6 +50,14 @@ export default class IndividualBlog extends Component {
         }).catch(err=>{
             this.setState({error:true,loader:false,content : err});
         });
+    }
+
+    set_share_Metaheader(sharedata){
+        sharedata=JSON.parse(sharedata);
+        document.querySelector('meta[property="og:url"]').content=sharedata.url;
+        document.querySelector('meta[property="og:title"]').content=sharedata.title;
+        // document.querySelector('meta[property="og:image"]').content="";
+        document.querySelector('meta[property="og:description"]').content=sharedata.description;
     }
 
     set_SEO_Headers(data){
