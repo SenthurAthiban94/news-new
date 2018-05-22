@@ -6,8 +6,8 @@ import Parser from 'html-react-parser';
 
 
 export default class IndividualBlog extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
             loader:true,
             error:false,
@@ -50,6 +50,7 @@ export default class IndividualBlog extends Component {
         document.querySelector('meta[itemprop="name"]').content="News New Search - "+data.title;
         document.querySelector('meta[itemprop="image"]').content=data.contentImageUrl && data.contentImageUrl.length ? data.contentImageUrl : "https://news-new.herokuapp.com/assets/images/logo.png";
         document.querySelector('meta[itemprop="description"]').content=data.description && data.description.length ? data.description : data.title+" is one of the trending search in "+data.countryName+" on "+searched_date;
+        document.querySelector('meta[property="og:url"]').content=this.props.currenturl;
         document.querySelector('meta[property="og:title"]').content="News New Search - "+data.title;
         document.querySelector('meta[property="og:image"]').content=data.contentImageUrl && data.contentImageUrl.length ? data.contentImageUrl : "https://news-new.herokuapp.com/assets/images/logo.png";
         document.querySelector('meta[property="og:description"]').content=data.description && data.description.length ? data.description : data.title+" is one of the trending search in "+data.countryName+" on "+searched_date;

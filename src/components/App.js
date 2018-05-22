@@ -111,7 +111,7 @@ class App extends Component {
   render() {
     var searchoption=this.state.blogdetails ? "" : (<Search filter={this.changefilter}/>);
     var contents_container=this.state.blogdetails ? (
-                            <IndividualBlog id={this.state.blogdetails}/>
+                            <IndividualBlog id={this.state.blogdetails} currenturl={this.state.blogdetails}/>
                           ) : (
                             <Blogcontent filter={this.state.filter} />
                           )
